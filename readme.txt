@@ -1,7 +1,7 @@
 === DeleteCustom ===
 Contributors: sisifodichoso
 Donate link: http://sisifodichoso.org/proyectos/deletecustom/
-Tags: metadata, custom fields
+Tags: metadata, custom, admin
 Requires at least: 2.0
 Tested up to: 2.6
 Stable tag: trunk
