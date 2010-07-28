@@ -1,10 +1,10 @@
 === DeleteCustom ===
 Contributors: sisifodichoso
 Donate link: http://sisifodichoso.org/proyectos/deletecustom/
-Tags: metadata, custom, admin
+Tags: metadata, custom, admin, custom field
 Requires at least: 2.0
-Tested up to: 2.6
-Stable tag: trunk
+Tested up to: 3.0
+Stable tag: 1.1
 
 DeleteCustom helps you to delete the custom fields of your posts. Very easy to install and use.
 
@@ -33,3 +33,17 @@ There is no questions yet ;-)
 == Screenshots ==
 
 1. Screenshot 1
+
+== Changelog ==
+
+= 1.1 =
+* Fixed Not wp_ prefix in data base bug. 
+
+= 1.0 =
+* First Version.
+
+== Upgrade Notice ==
+
+= 1.1 =
+Fixed Not wp_ prefix in data base bug. 
+
