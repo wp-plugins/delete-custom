@@ -1,7 +1,7 @@
 === DeleteCustom ===
 Contributors: sisifodichoso
 Donate link: http://sisifodichoso.org/proyectos/deletecustom/
-Tags: metadata, custom, admin
+Tags: metadata, custom, admin, custom field
 Requires at least: 2.0
 Tested up to: 3.0
 Stable tag: 1.1
