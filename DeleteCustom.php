@@ -4,12 +4,14 @@ Plugin Name: DeleteCustom
 Plugin Script: DeleteCustom.php
 Plugin URI: http://sisifodichoso.org/proyectos/deletecustom/
 Description: Delete your Custom Fields 
-Version: 1.0
+Version: 1.1
 License: GPL
 Author: Marta Garabatos
 Author URI: http://sisifodichoso.org
 
 === CHANGES ===
+- v1.1 - Fixed Not wp-prefix bug 
+ 
 - v1.0 - first version
 */
 
@@ -40,11 +42,12 @@ $namefield;
 /******Functions******/
 function DC_ShowSelect(){
 	global $wpdb;
+	$dbprefix=$wpdb->prefix;	
 	$option='';
 	$keys = array();
 
 	//The list of custom fields
-	$keys = $wpdb->get_col('SELECT meta_key FROM wp_postmeta ORDER BY meta_key');	
+	$keys = $wpdb->get_col('SELECT meta_key FROM ' . $dbprefix . 'postmeta ORDER BY meta_key');	
 	if ($keys){
 		$keys = array_unique($keys); //We only want an unique entry for each field
 		foreach ($keys as $key) {
@@ -58,6 +61,7 @@ function DC_ShowSelect(){
 	echo <<<EOT
 		<div class="wrap">
 		<h2>DeleteCustom</h2>
+			<p>El prefijo de la base de datos es {$dbprefix}  </p>
 		<h3>Step 1: select</h3>
 		<p>Please, select a Custom Field to delete. <br />Feel free to select any field you want, you are not going to delete anything at this moment.</p>		
 		<form name="selectfieldform" method="post" action="#">
@@ -79,7 +83,8 @@ EOT;
 }
 
 function DC_ShowDelete($namefield){
-	global $wpdb;
+	global $wpdb;	
+	$dbprefix=$wpdb->prefix;
 	/*global $namefield;
 	$namefield = $_POST['metakeyselect'];*/
 	$ids = array();
@@ -88,10 +93,10 @@ function DC_ShowDelete($namefield){
 	$dates = array();
 	$values = array();
 	$class='';
-	$ids = $wpdb->get_col("SELECT post_id FROM wp_postmeta WHERE meta_key = '" .$namefield . "'");
+	$ids = $wpdb->get_col('SELECT post_id FROM ' . $dbprefix . 'postmeta WHERE meta_key = ' . "'" . $namefield . "'");
 	echo '<div class="wrap">';			
 	echo '<h2>DeleteCustom</h2>';
-	echo '<h3>Step 2: delete</h3>';
+	echo '<h3>Step 2: delete</h3><p>El prefijo de la base de datos es '. $dbprefix .'  </p>';
 	echo '<p>Now, you are going to delete the Custom Field called: <strong>"' . $namefield . '" </strong> from some posts associated with it. <br />'; 
 	echo 'Please, select the posts on which you want to delete it. <br /></p>';
 	
@@ -120,12 +125,13 @@ function DC_ShowDelete($namefield){
 		<th scope="col">Delete CF</th> 
  	 </tr>';
 			
+
 	if ($ids){
 		foreach ($ids as $id){
-			$titles [$id] = $wpdb->get_var('SELECT post_title FROM wp_posts WHERE ID =' . $id );
-			$guids [$id] = $wpdb->get_var('SELECT guid FROM wp_posts WHERE ID =' . $id );
-			$dates [$id] = $wpdb->get_var('SELECT post_date FROM wp_posts WHERE ID =' . $id );
-			$values [$id] = $wpdb->get_var('SELECT meta_value FROM wp_postmeta WHERE meta_key ="'. $namefield .'" AND post_id =' . $id );
+			$titles [$id] = $wpdb->get_var('SELECT post_title FROM ' . $dbprefix . 'posts WHERE ID =' . $id );
+			$guids [$id] = $wpdb->get_var('SELECT guid FROM ' . $dbprefix . 'posts WHERE ID =' . $id );
+			$dates [$id] = $wpdb->get_var('SELECT post_date FROM ' . $dbprefix . 'posts WHERE ID =' . $id );
+			$values [$id] = $wpdb->get_var('SELECT meta_value FROM ' . $dbprefix . 'postmeta WHERE meta_key ="'. $namefield .'" AND post_id =' . $id );
 			$class = ('alternate' == $class) ? '' : 'alternate';
 			echo '<tr class="' . $class. '">
 				<th scope="row">' . $id .'</th>
