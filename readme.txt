@@ -4,7 +4,7 @@ Donate link: http://sisifodichoso.org/proyectos/deletecustom/
 Tags: metadata, custom, admin
 Requires at least: 2.0
 Tested up to: 2.6
-Stable tag: trunk
+Stable tag: tags/1.1
 
 DeleteCustom helps you to delete the custom fields of your posts. Very easy to install and use.
 
