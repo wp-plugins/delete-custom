@@ -32,4 +32,4 @@ There is no questions yet ;-)
 
 == Screenshots ==
 
-1. Captura de pantalla '/trunk/screenshot1.jpg'
+1. Screenshot 1
