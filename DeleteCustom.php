@@ -61,7 +61,6 @@ function DC_ShowSelect(){
 	echo <<<EOT
 		<div class="wrap">
 		<h2>DeleteCustom</h2>
-			<p>El prefijo de la base de datos es {$dbprefix}  </p>
 		<h3>Step 1: select</h3>
 		<p>Please, select a Custom Field to delete. <br />Feel free to select any field you want, you are not going to delete anything at this moment.</p>		
 		<form name="selectfieldform" method="post" action="#">
@@ -96,7 +95,7 @@ function DC_ShowDelete($namefield){
 	$ids = $wpdb->get_col('SELECT post_id FROM ' . $dbprefix . 'postmeta WHERE meta_key = ' . "'" . $namefield . "'");
 	echo '<div class="wrap">';			
 	echo '<h2>DeleteCustom</h2>';
-	echo '<h3>Step 2: delete</h3><p>El prefijo de la base de datos es '. $dbprefix .'  </p>';
+	echo '<h3>Step 2: delete</h3>';
 	echo '<p>Now, you are going to delete the Custom Field called: <strong>"' . $namefield . '" </strong> from some posts associated with it. <br />'; 
 	echo 'Please, select the posts on which you want to delete it. <br /></p>';
 	
